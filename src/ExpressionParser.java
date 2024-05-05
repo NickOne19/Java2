@@ -1,6 +1,11 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * Класс для парсинга и вычисления математических выражений.
+ */
+
 public class ExpressionParser {
     // Лексемы элементов выражения
     final int NONE = 0; // Пустой
@@ -29,6 +34,10 @@ public class ExpressionParser {
     private boolean isSeparator(char character) {
         return (" +-/*^=()".indexOf(character)) != -1;
     }
+
+    /**
+     * Получает следующую лексему из строки выражения.
+     */
 
     private void getNextToken() {
         token = "";
@@ -73,7 +82,13 @@ public class ExpressionParser {
             return;
         }
     }
-
+    /**
+     * Вычисляет значение математического выражения.
+     *
+     * @param expression Математическое выражение для вычисления.
+     * @return Результат вычисления выражения.
+     * @throws ParserException В случае ошибок при парсинге или вычислении.
+     */
     public double calculate(String expression) throws ParserException {
         double result;
         this.expression = expression;
@@ -212,6 +227,12 @@ public class ExpressionParser {
         }
         return result;
     }
+    /**
+     * Обрабатывает ошибки, возникающие при парсинге и вычислении выражения.
+     *
+     * @param exception Тип ошибки.
+     * @throws ParserException Сообщение об ошибке.
+     */
 
     private void handleError(int EXCEPTION) throws ParserException {
         String[] errors = {"Синтаксическая ошибка", "Несоответствие скобок", "Нет выражения", "Деление на ноль"};
